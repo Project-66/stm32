@@ -34,7 +34,11 @@ fn main() -> ! {
     let mut delay_syst = cp.SYST.delay(&rcc.clocks);
     let gpioc = dp.GPIOC.split(&mut rcc);
     let mut pc6 = gpioc.pc6.into_push_pull_output();
-    
     // 4. Endless loop
-    loop {}
+    loop {
+        pc6.set_high();
+        delay_syst.delay(1000.millis());
+        pc6.set_low();
+        delay_syst.delay(1000.millis());
+    }
 }
