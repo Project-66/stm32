@@ -1,0 +1,12 @@
+[build]
+# STM32G4 series uses Arm Cortex-M4 core with FPU, which has following target:
+target = "thumbv7em-none-eabihf"
+
+# Trivia: Cortex-M4 is an ARMv7E-M core with Thumb support, so "thumbv7em"
+# "none" means no OS; "eabi" means "embedded ABI";
+# "hf" means "hardfloat" (https://wiki.debian.org/ArmHardFloatPort/VfpComparison).
+
+# Necessary for the memory.x stuff later to work
+rustflags = [
+  "-C", "link-arg=-Tlink.x",
+]
